@@ -58,19 +58,6 @@ public class ParkingTicketController {
         return new ResponseEntity<>(ticketDTOs, HttpStatus.OK);
     }
 
-    /*@GetMapping("/open-tickets")
-    public ResponseEntity<List<ParkingTicket>> getAllOpenTickets() {
-        List<ParkingTicket> parkingTickets = parkingTicketService.getAllOpenTickets();
-        return new ResponseEntity<>(parkingTickets, HttpStatus.OK);
-    }
-
-
-    @GetMapping("/paid-tickets")
-    public ResponseEntity<List<ParkingTicket>> getAllPaidTickets() {
-        List<ParkingTicket> parkingTickets = parkingTicketService.getAllPaidTickets();
-        return new ResponseEntity<>(parkingTickets, HttpStatus.OK);
-    }*/
-
 
     @PostMapping("/generate/{parkingLotId}/{vehicleId}")
     public ResponseEntity<String> generateParkingTicket(
