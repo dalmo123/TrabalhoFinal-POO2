@@ -20,6 +20,12 @@ public abstract class Vehicle {
     private String color;
     private String nrRodas;
 
+    @ManyToOne
+    private ParkingLot parkingLot;
+
+    @ManyToOne
+    private ParkingTicket parkingTicket;
+
     public abstract String getType();
 
 }

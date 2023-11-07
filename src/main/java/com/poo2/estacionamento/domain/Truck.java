@@ -8,11 +8,7 @@ import jakarta.persistence.ManyToOne;
 @DiscriminatorValue("truck")
 public class Truck extends Vehicle{
 
-    @ManyToOne
-    private ParkingLot parkingLot;
 
-    @ManyToOne
-    private ParkingTicket parkingTicket;
     @Override
     public String getType() {
         return "truck";

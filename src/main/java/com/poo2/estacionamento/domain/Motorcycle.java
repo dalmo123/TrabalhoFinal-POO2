@@ -10,11 +10,7 @@ import lombok.Data;
 @DiscriminatorValue("motorcycle")
 public class Motorcycle extends Vehicle {
 
-    @ManyToOne
-    private ParkingLot parkingLot;
 
-    @ManyToOne
-    private ParkingTicket parkingTicket;
 
     @Override
     public String getType() {

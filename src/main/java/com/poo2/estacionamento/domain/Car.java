@@ -11,11 +11,7 @@ import lombok.Data;
 public class Car extends Vehicle{
 
 
-    @ManyToOne
-    private ParkingLot parkingLot;
 
-    @ManyToOne
-    private ParkingTicket parkingTicket;
 
     @Override
     public String getType() {
