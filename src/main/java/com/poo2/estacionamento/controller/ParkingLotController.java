@@ -1,5 +1,6 @@
 package com.poo2.estacionamento.controller;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.poo2.estacionamento.domain.ParkingLot;
 import com.poo2.estacionamento.domain.Vehicle;
 import com.poo2.estacionamento.dto.AddVehicleRequest;
