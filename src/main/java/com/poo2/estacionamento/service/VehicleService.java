@@ -27,6 +27,8 @@ public class VehicleService {
         createdVehicle.setModel(vehicleRequest.getModel());
         createdVehicle.setColor(vehicleRequest.getColor());
         createdVehicle.setNrRodas(vehicleRequest.getNrRodas());
+        createdVehicle.setParkingLotId(vehicleRequest.getParkingLotId());
+        createdVehicle.setParkingTicketId(vehicleRequest.getParkingTicketId());
 
         return vehicleRepository.save(createdVehicle);
     }

@@ -24,21 +24,19 @@ public class ParkingTicketService{
     private ParkingLotRepository parkingLotRepository;
 
 
-    public boolean createParkingTicket(Long parkingLotId, Long vehicleId) {
+    public Optional<ParkingTicket> createParkingTicket(Long parkingLotId) {
         ParkingLot parkingLot = parkingLotRepository.findById(parkingLotId).orElse(null);
-        Vehicle vehicle = vehicleRepository.findById(vehicleId).orElse(null);
 
-        if (parkingLot != null && vehicle != null) {
+        if (parkingLot != null) {
             ParkingTicket newTicket = new ParkingTicket();
-            newTicket.setVehicle(vehicle);
             newTicket.setParkingLot(parkingLot);
             newTicket.setCheckInTime(LocalDateTime.now());
 
             parkingTicketRepository.save(newTicket);
-            return true;
+            return Optional.of(newTicket);
         }
 
-        return false;
+        return Optional.empty();
     }
 
 

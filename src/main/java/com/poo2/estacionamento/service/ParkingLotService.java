@@ -1,6 +1,7 @@
 package com.poo2.estacionamento.service;
 
 import com.poo2.estacionamento.domain.ParkingLot;
+import com.poo2.estacionamento.domain.ParkingTicket;
 import com.poo2.estacionamento.domain.Vehicle;
 import com.poo2.estacionamento.dto.AddVehicleRequest;
 import com.poo2.estacionamento.observer.ConsoleParkingLotObserver;
@@ -26,6 +27,9 @@ public class ParkingLotService {
     private VehicleService vehicleService;
     @Autowired
     private ParkingLotObserverComponent parkingLotObserverComponent;
+
+    @Autowired
+    private ParkingTicketService parkingTicketService;
 
     @Autowired
     private State fullState;
@@ -76,14 +80,20 @@ public class ParkingLotService {
                 return false;
             }
 
-            Vehicle createdVehicle = vehicleService.createVehicle(vehicleRequest);
-            parkingLot.getParkedVehicles().add(createdVehicle);
-            decrementAvailableSpaces(parkingLot);
-            parkingLotRepository.save(parkingLot);
+            Optional<ParkingTicket>  newTicket = parkingTicketService.createParkingTicket(parkingLotId);
+            if(newTicket.isPresent()){
+                vehicleRequest.setParkingLotId(parkingLotId);
+                vehicleRequest.setParkingTicketId(newTicket.get().getId());
+                Vehicle createdVehicle = vehicleService.createVehicle(vehicleRequest);
+                parkingLot.getParkedVehicles().add(createdVehicle);
+                decrementAvailableSpaces(parkingLot);
+                parkingLotRepository.save(parkingLot);
 
-           isParkingLotFull(parkingLot);
+                isParkingLotFull(parkingLot);
 
-            return true;
+                return true;
+            }
+
         }
         return false;
     }

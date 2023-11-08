@@ -1,8 +1,6 @@
 package com.poo2.estacionamento.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.poo2.estacionamento.domain.ParkingTicket;
-import com.poo2.estacionamento.domain.Vehicle;
 import com.poo2.estacionamento.dto.ParkingTicketDTO;
 import com.poo2.estacionamento.service.ParkingTicketService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,19 +56,6 @@ public class ParkingTicketController {
         return new ResponseEntity<>(ticketDTOs, HttpStatus.OK);
     }
 
-
-    @PostMapping("/generate/{parkingLotId}/{vehicleId}")
-    public ResponseEntity<String> generateParkingTicket(
-            @PathVariable Long parkingLotId,
-            @PathVariable Long vehicleId
-    ) {
-        boolean ticketCreated = parkingTicketService.createParkingTicket(parkingLotId, vehicleId);
-        if (ticketCreated) {
-            return ResponseEntity.ok("Parking ticket created successfully");
-        } else {
-            return ResponseEntity.badRequest().body("Failed to create parking ticket");
-        }
-    }
 
 
 

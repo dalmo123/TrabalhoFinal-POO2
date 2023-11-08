@@ -1,5 +1,6 @@
 package com.poo2.estacionamento.domain;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -8,6 +9,7 @@ import lombok.Data;
 @Data
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "vehicle_type")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public abstract class Vehicle {
 
     @Id
@@ -20,11 +22,10 @@ public abstract class Vehicle {
     private String color;
     private String nrRodas;
 
-    @ManyToOne
-    private ParkingLot parkingLot;
 
-    @ManyToOne
-    private ParkingTicket parkingTicket;
+    private Long parkingLotId;
+
+    private Long parkingTicketId;
 
     public abstract String getType();
 
